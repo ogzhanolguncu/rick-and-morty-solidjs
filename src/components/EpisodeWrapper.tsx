@@ -1,4 +1,4 @@
-import { Component, createSignal, For } from "solid-js";
+import { Component, createEffect, createSignal, For } from "solid-js";
 
 import { EpisodeDetails } from "../types/api";
 import CharacterCard from "./CharacterCard";
@@ -19,6 +19,8 @@ const EpisodeWrapper: Component<Props> = ({ episode }) => {
       setCounter((prevState) => prevState + 1);
     }
   };
+
+  createEffect(() => console.log(counter(), totalPage));
 
   const episodeNumber = episode.episode.substring(
     episode.episode.length - 2,
@@ -42,7 +44,7 @@ const EpisodeWrapper: Component<Props> = ({ episode }) => {
         >
           {(character) => <CharacterCard characterUrl={character} />}
         </For>
-        {loadCount() !== episode.characters.length && (
+        {counter() !== totalPage && (
           <>
             <div></div>
             <button

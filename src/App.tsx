@@ -42,10 +42,7 @@ const App: Component = () => {
     <div class="flex justify-center items-center flex-col p-10">
       <h2 class=" font-medium text-4xl my-5">Rick and Morty</h2>
       <div style={{ width: "1000px" }}>
-        <For
-          each={episodes()?.results.slice(0, 2)}
-          fallback={<p>Loading...</p>}
-        >
+        <For each={episodes()?.results} fallback={<p>Loading...</p>}>
           {(episode) => (
             <div>
               <EpisodeWrapper episode={episode} />{" "}
